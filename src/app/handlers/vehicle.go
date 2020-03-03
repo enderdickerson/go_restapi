@@ -1,3 +1,4 @@
+// Package handlers provide specific http endpoint operation
 package handlers
 
 import (

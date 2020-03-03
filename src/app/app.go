@@ -3,7 +3,8 @@ package app
 import (
 	"log"
 	"net/http"
-	"restapi/src/app/handlers"
+	h "restapi/src/app/handlers"
+	m "restapi/src/app/middleware"
 )
 
 // App struct
@@ -15,7 +16,7 @@ func (a *App) Initialize() {
 }
 
 func setRoutes() {
-	http.HandleFunc("/vehicle", handlers.CreateVehicle)
+	http.HandleFunc("/vehicle", m.Chain(h.CreateVehicle, m.Logging(), m.Method("GET")))
 }
 
 // Start application
