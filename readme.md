@@ -1,4 +1,4 @@
-# RestApi_go
+# go_restapi
 A very basic REST api written using Golang as a learning endeavor
 
 - [x] Logging timestamp and time to complete
