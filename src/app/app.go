@@ -16,7 +16,7 @@ func (a *App) Initialize() {
 }
 
 func setRoutes() {
-	http.HandleFunc("/vehicle", m.Chain(h.CreateVehicle, m.Logging(), m.Method("GET")))
+	http.HandleFunc("/vehicle", m.Chain(h.CreateVehicle, m.Logging(), m.Method("POST")))
 }
 
 // Start application
