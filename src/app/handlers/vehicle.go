@@ -5,24 +5,23 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-)
+	"restapi/src/app/data"
+	"restapi/src/app/models"
 
-// Vehicle struct for holding ymmt
-type Vehicle struct {
-	Year  string `json:"year"`
-	Make  string `json:"make"`
-	Model string `json:"model"`
-	Trim  string `json:"trim"`
-}
+	// Import for postgres dialect
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+)
 
 // CreateVehicle to create new vehicle
 func CreateVehicle(w http.ResponseWriter, r *http.Request) {
-	var v Vehicle
+	var v models.Vehicle
 	err := json.NewDecoder(r.Body).Decode(&v)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	data.GetDB().Create(&v)
 
 	fmt.Fprintf(w, "Vehicle: %+v", v)
 	fmt.Printf("Vehicle: %+v", v)
